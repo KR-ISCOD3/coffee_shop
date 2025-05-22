@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee-Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="/public/app.css">
+</head>
+<body class="bg-secondary-subtle">
+
+    <div class="container-fluid p-0 d-flex">
+
+        <aside class="col-2 p-0">
+            <div class="col-2 bg-pink-700 d-flex flex-column p-3 position-fixed" style="height: 100vh;">
+
+              <!-- Logo -->
+              <div class="d-flex align-items-center border-bottom pb-2">
+                <img src="/public/logo.png" alt="" width="60px">
+                <h3 class="mb-0 font-nationalpark fw-bold text-light ms-2">P-COFFEE</h3>
+              </div>
+
+              <!-- Menu -->
+              <menu class="font-nationalpark p-0 flex-grow-1 mt-3">
+                <ul class="list-unstyled">
+                  <li class="hover-bg p-2 rounded-3 trasition my-2">
+                    <a href="" class="text-decoration-none fs-4 text-light trasition">
+                      <i class="bi bi-house-door-fill"></i> <span class="fw-medium">Dashboard</span>
+                    </a>
+                  </li>
+                  <li class="hover-bg p-2 rounded-3 trasition my-2">
+                    <a href="" class="text-decoration-none fs-4 text-light trasition">
+                      <i class="bi bi-cart-fill"></i> <span class="fw-medium">Order</span>
+                    </a>
+                  </li>
+                  <li class="hover-bg p-2 rounded-3 trasition my-2">
+                    <a href="" class="text-decoration-none fs-4 text-light trasition">
+                      <i class="bi bi-cup-fill"></i> <span class="fw-medium">Drinks</span>
+                    </a>
+                  </li>
+                </ul>
+              </menu>
+
+              <!-- Logout at the bottom -->
+              <li class="list-unstyled p-2 rounded-3 my-2 bg-danger mt-auto" style="cursor: pointer;">
+                <a href="" class="text-decoration-none fs-4 text-light">
+                  <i class="bi bi-box-arrow-left"></i> <span class="fw-medium">Logout</span>
+                </a>
+              </li>
+
+            </div>
+          </aside>
+
+
+
+        <main class="col-10 font-nationalpark" >
+
+            <!-- Header in main -->
+            <header class="navbar p-2 px-4 bg-body">
+               <h3 class="m-0 text-secondary">Welcome to P-COFFEE</h3>
+               <div class="navbar">
+                <div style="width: 40px;height: 40px;" class="rounded-circle overflow-hidden ">
+                    <img src="/public/user.png" alt="" class="object-fit-cover w-100 h-100">
+                </div>
+                <div style="line-height: 18px;">
+                    <p class="m-0 ms-2 fw-medium">Mr.John</p>
+                    <p class="m-0 ms-2 text-secondary">Service</p>
+                </div>
+               </div>
+            </header>
+
+            <!-- Analysis Card -->
+            <div class="p-3">
+                <div class="row m-0">
+
+                    <div class="col-3  p-2">
+                        <div class="navbar py-3 bg-light px-4">
+                            <div>
+                                <h1>954</h1>
+                                <p class="m-0 text-secondary fs-5">New Order</p>
+                            </div>
+                            <i class="bi bi-backpack-fill text-pink-700" style="font-size: 50px;"></i>
+                        </div>
+                    </div>
+
+                    <div class="col-3  p-2">
+                        <div class="navbar py-3 bg-light px-4">
+                            <div>
+                                <h1>1,954</h1>
+                                <p class="m-0 text-secondary fs-5">Total Orders</p>
+                            </div>
+                            <i class="bi bi-cart-fill text-pink-700" style="font-size: 50px;"></i>
+                        </div>
+                    </div>
+
+                    <div class="col-3  p-2">
+                        <div class="navbar py-3 bg-light px-4">
+                            <div>
+                                <h1>50</h1>
+                                <p class="m-0 text-secondary fs-5">Latest Drinks</p>
+                            </div>
+                            <i class="bi bi-plus-square-fill text-pink-700" style="font-size: 50px;"></i>
+                        </div>
+                    </div>
+
+                    <div class="col-3  p-2">
+                        <div class="navbar py-3 bg-light px-4">
+                            <div>
+                                <h1>154</h1>
+                                <p class="m-0 text-secondary fs-5">Drinks</p>
+                            </div>
+                            <i class="bi bi-cup-fill text-pink-700" style="font-size: 50px;"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Table Order -->
+            <div class="px-4">
+                <div class="bg-body p-4">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="m-0">Recent Orders</h3>
+                        <button class="btn btn-success">Export Excel</button>
+                    </div>
+                    <div style="height: 550px; overflow-y: auto;">
+                        <table class="table mt-4">
+                            <thead>
+                                <tr class="text-center ">
+                                <td class="text-secondary fw-medium">OrderID</td>
+                                <td class="text-secondary fw-medium">Drink / Size</td>
+                                <td class="text-secondary fw-medium">Sugar %</td>
+                                <td class="text-secondary fw-medium">Payment$</td>
+                                <td class="text-secondary fw-medium">Order_date</td>
+                                <td class="text-secondary fw-medium">Cashier</td>
+                                <td class="text-secondary fw-medium">Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle text-center ">
+                                <td>1</td>
+                                <td>
+                                    Ice Lette / <span class="text-primary">small</span>
+                                <td>70%</td>
+                                <td>15.00$</td>
+                                <td>
+                                    <span class="px-3 bg-secondary-subtle rounded-2">27/04/2025</span>
+                                </td>
+                                <td>2</td>
+                                <td>
+                                    <button class="btn bg-pink-700 text-light"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                                </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Table Drink -->
+            <div class="px-4 mt-4">
+                <div class="bg-body p-4">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="m-0">Table Drinks</h3>
+                        <div class="d-flex">
+                            <button class="btn btn-success me-2">Export Excel</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaladd">+ Create Product </button>
+                        </div>
+                    </div>
+                    <div style="height: 550px; overflow-y: auto;">
+                        <table class="table mt-4">
+                            <thead>
+                                <tr >
+                                    <td class="text-secondary fw-medium">Id</td>
+                                    <td class="text-secondary fw-medium">Drink</td>
+                                    <td class="text-secondary fw-medium">Size</td>
+                                    <td class="text-secondary fw-medium">Category</td>
+                                    <td class="text-secondary fw-medium">Price(small)</td>
+                                    <td class="text-secondary fw-medium">Price(meduim)</td>
+                                    <td class="text-secondary fw-medium">Create_Date</td>
+                                    <td class="text-secondary fw-medium">Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle ">
+                                    <td>#1</td>
+                                    <td class="d-flex align-items-center">
+                                        <div style="width: 40px;height: 40px;" class="bg-secondary rounded-circle overflow-hidden me-2">
+                                            <img src="" alt="" class="w-100 h-100 object-fit-cover">
+                                        </div>
+                                        Ice Latte
+                                    <td>
+                                        <span class="text-primary">small</span>
+                                        /
+                                        <span class="text-success">medium</span>
+                                    </td>
+                                    <td>
+                                        <span class="px-3 bg-info-subtle rounded-2 text-primary">Coffee</span>
+                                    </td>
+                                    <td>
+                                        $2.75
+                                    </td>
+                                    <td>
+                                        $3.00
+                                    </td>
+                                    <td>
+                                        <span class="px-3 bg-secondary-subtle rounded-2">27/04/2025</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn bg-pink-700 text-light" data-bs-toggle="modal" data-bs-target="#modaledit"><i class="bi bi-pencil-square"></i></button>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modaldelete"><i class="bi bi-trash-fill"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Order Content -->
+            <div class="px-4 mt-4">
+                <div class="d-flex justify-content-between">
+
+                    <div class="col-7 bg-body border-end ">
+                       <div class="bg-body p-4">
+                            <div class="d-flex">
+                                <form action="" class="col-5 d-flex border">
+                                    <input type="text" placeholder="Search..."
+                                     class="form-control shadow-none rounded-0 border-0 py-2">
+                                    <button class="btn border-0">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="w-100" style="height: 800px;overflow-y: auto;">
+
+                                <div class="row m-0 my-4">
+
+                                    <div class="col-6 my-2">
+                                        <div class="card rounded-0">
+                                            <div class="card-image bg-secondary overflow-hidden" style="height: 250px;">
+                                                <img src="" alt="" class="w-100 h-100 object-fit-cover">
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="navbar align-items-center">
+                                                    <div>
+                                                        <h3 class="m-0">Ice Latte</h3>
+                                                        <p class="m-0 fs-5 text-pink-700">$1.50</p>
+                                                    </div>
+                                                    <div>
+                                                        <button class="btn bg-pink-700 text-light rounded-0">+ Add To Cart</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 my-2">
+                                        <div class="card rounded-0">
+                                            <div class="card-image bg-secondary overflow-hidden" style="height: 250px;">
+                                                <img src="" alt="" class="w-100 h-100 object-fit-cover">
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="navbar align-items-center">
+                                                    <div>
+                                                        <h3 class="m-0">Ice Latte</h3>
+                                                        <p class="m-0 fs-5 text-pink-700">$1.50</p>
+                                                    </div>
+                                                    <div>
+                                                        <button class="btn bg-pink-700 text-light rounded-0">+ Add To Cart</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                       </div>
+                    </div>
+                    <div class="col-5 ps-3">
+                        <div class="bg-body p-4">
+                            <h4>Cart</h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td class="text-secondary">Name</td>
+                                        <td class="text-secondary">Size</td>
+                                        <td class="text-secondary">Price</td>
+                                        <td class="text-secondary">Qty</td>
+                                        <td class="text-secondary">Total</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="align-middle">
+                                        <td>Ice Latte</td>
+                                        <td class="col-3">
+                                            <select name="" id="" class="form-select shadow-none border rounded-0">
+                                                <option value="">small</option>
+                                                <option value="">meduim</option>
+                                            </select>
+                                        </td>
+                                        <td>$1.50</td>
+                                        <td class="col-2">
+                                            <input type="number" name="" id="" class="form-control shadow-none border rounded-0" value="2">
+                                        </td>
+                                        <td>$3.00</td>
+                                    </tr>
+                                    <tr class="align-middle">
+                                        <td>Ice Latte</td>
+                                        <td class="col-3">
+                                            <select name="" id="" class="form-select shadow-none border rounded-0">
+                                                <option value="">small</option>
+                                                <option value="">meduim</option>
+                                            </select>
+                                        </td>
+                                        <td>$1.50</td>
+                                        <td class="col-2">
+                                            <input type="number" name="" id="" class="form-control shadow-none border rounded-0" value="2">
+                                        </td>
+                                        <td>$3.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="m-0">Total-Payment : $6.00</h5>
+
+                                </div>
+                                <div>
+                                    <button class="btn btn-dark">Proccess Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- modal add product -->
+            <div class="modal fade " id="modaladd" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Form Add</h1>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div style="height: 230px;" class="w-100 bg-pink-700">
+                                            <img id="previewImg" src="" alt="" class="w-100 h-100 object-fit-cover">
+                                        </div>
+                                        <input type="file" id="imageInput" class="d-none">
+                                        <button class="btn bg-pink-700 text-light w-100 mt-2 rounded-0" id="uploadBtn" type="button">Upload</button>
+                                    </div>
+                                    <div class="col-7 p-0 pe-2">
+                                       <div class="mb-1">
+                                        <label for="">Drink Name*</label>
+                                        <input type="text" name="drink" id="drink" placeholder="Enter Drink Name" class="form-control shadow-none border rounded-0">
+                                       </div>
+                                       <div class="mb-1">
+                                        <label for="">Category*</label>
+                                        <select name="category" id="category" class="form-select shadow-none border rounded-0">
+                                            <option value="Coffee">Coffee</option>
+                                            <option value="MilkTea">Milk-Tea</option>
+                                        </select>
+                                       </div>
+                                       <div class="mb-1">
+                                        <label for="">Small Price*</label>
+                                        <input type="number" name="price_small" id="price_small" placeholder="Enter Small Price" class="form-control shadow-none border rounded-0">
+                                       </div>
+                                       <div class="mb-1">
+                                        <label for="">Meduim Price*</label>
+                                        <input type="number" name="meduim_small" id="meduim_small" placeholder="Enter Meduim Price" class="form-control shadow-none border rounded-0">
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer mt-2">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn bg-pink-700 text-light">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+             <!-- modal edit product -->
+            <div class="modal fade " id="modaledit" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Form Edit</h1>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div style="height: 230px;" class="w-100 bg-pink-700">
+                                            <img id="previewImg" src="" alt="" class="w-100 h-100 object-fit-cover">
+                                        </div>
+                                        <input type="file" id="imageInput" class="d-none">
+                                        <button class="btn bg-pink-700 text-light w-100 mt-2 rounded-0" id="uploadBtn" type="button">Upload</button>
+                                    </div>
+                                    <div class="col-7 p-0 pe-2">
+                                       <div class="mb-1">
+                                        <label for="">Drink Name*</label>
+                                        <input type="text" name="drink" id="drink" placeholder="Enter Drink Name" class="form-control shadow-none border rounded-0">
+                                       </div>
+                                       <div class="mb-1">
+                                        <label for="">Category*</label>
+                                        <select name="category" id="category" class="form-select shadow-none border rounded-0">
+                                            <option value="Coffee">Coffee</option>
+                                            <option value="MilkTea">Milk-Tea</option>
+                                        </select>
+                                       </div>
+                                       <div class="mb-1">
+                                        <label for="">Small Price*</label>
+                                        <input type="number" name="price_small" id="price_small" placeholder="Enter Small Price" class="form-control shadow-none border rounded-0">
+                                       </div>
+                                       <div class="mb-1">
+                                        <label for="">Meduim Price*</label>
+                                        <input type="number" name="meduim_small" id="meduim_small" placeholder="Enter Meduim Price" class="form-control shadow-none border rounded-0">
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer mt-2">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-warning">Update</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+             <!-- modal delete product -->
+             <div class="modal fade " id="modaldelete" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header"></div>
+                        <div class="modal-body">
+                            <form action="">
+                                <input type="hidden" name="iddelete" id="iddelete">
+                                <h2 class="text-center">Are you want delete?</h2>
+                                <div class="modal-footer mt-2 border-0 justify-content-center">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                                    <button type="button" class="btn btn-danger">Yes</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+
+        $("#uploadBtn").on('click',function(){
+            $("#imageInput").click();
+        })
+
+        $("#imageInput").on('change',function(e){
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#previewImg').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    })
+</script>
+</html>

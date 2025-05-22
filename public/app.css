@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&display=swap');
+
+.font-nationalpark{
+    font-family: "National Park", sans-serif !important;
+}
+
+:root{
+    --pink-700:#cd009d;
+    --pink-600:#e203b2;
+    --pink-500:#ff24c5;
+    --pink-400:#ff5fcf;
+    --pink-300:#ff9be2;
+    --pink-200:#ffc7f1;
+    --pink-100:#ffe3f8;
+}
+
+/* text main color */
+.text-pink-700{
+    color: var(--pink-700) !important;
+}
+.text-pink-600{
+    color: var(--pink-600) !important;
+}
+.text-pink-500{
+    color: var(--pink-500) !important;
+}
+.text-pink-400{
+    color: var(--pink-400) !important;
+}
+.text-pink-300{
+    color: var(--pink-300) !important;
+}
+.text-pink-200{
+    color: var(--pink-200) !important;
+}
+.text-pink-100{
+    color: var(--pink-100) !important;
+}
+/* text main color */
+
+
+/* backgrond main color */
+.bg-pink-700{
+    background-color: var(--pink-700) !important;
+}
+.bg-pink-600{
+    background-color: var(--pink-600) !important;
+}
+.bg-pink-500{
+    background-color: var(--pink-500) !important;
+}
+.bg-pink-400{
+    background-color: var(--pink-400) !important;
+}
+.bg-pink-300{
+    background-color: var(--pink-300) !important;
+}
+.bg-pink-200{
+    background-color: var(--pink-200) !important;
+}
+.bg-pink-100{
+    background-color: var(--pink-100) !important;
+}
+/* backgrond main color */
+
+.trasition{
+    transition: 0.2s ease-in-out !important;
+}
+
+.hover-bg:hover{
+    cursor: pointer;
+    background-color: white !important;
+}
+.hover-bg:hover a{
+    color: var(--pink-700) !important;
+}
+
+
+
