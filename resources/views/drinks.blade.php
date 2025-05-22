@@ -63,13 +63,14 @@
                                 <td>
                                     <button class="btn bg-pink-700 text-light"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#modaledit">
+                                            data-bs-target="#modaledit{{ $drink->id }}">
 
                                         <i class="bi bi-pencil-square"></i></button>
 
                                     <button class="btn btn-danger"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#modaldelete">
+                                            data-bs-target="#modaldelete"
+                                            data-id="{{ $drink->id }}">
                                         <i class="bi bi-trash-fill"></i>
                                     </button>
                                 </td>
@@ -191,17 +192,33 @@
             <div class="modal-content">
                 <div class="modal-header"></div>
                 <div class="modal-body">
-                    <form action="">
+                    <form id="deleteForm" method="POST">
+                        @csrf
+                        @method('DELETE')
                         <input required type="hidden" name="iddelete" id="iddelete">
                         <h2 class="text-center">Are you want delete?</h2>
                         <div class="modal-footer mt-2 border-0 justify-content-center">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
-                            <button type="button" class="btn btn-danger">Yes</button>
+                            <button type="submit" class="btn btn-danger">Yes</button>
                         </div>
+
                     </form>
                 </div>
 
             </div>
         </div>
     </div>
+
+    <script>
+        var deleteModal = document.getElementById('modaldelete');
+        var deleteForm = document.getElementById('deleteForm');
+
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget; // Button that triggered the modal
+            var drinkId = button.getAttribute('data-id'); // Extract info from data-* attributes
+
+            // Update the form action to include the drink ID
+            deleteForm.action = `/admin/drinks/${drinkId}`;
+        });
+    </script>
 @endsection

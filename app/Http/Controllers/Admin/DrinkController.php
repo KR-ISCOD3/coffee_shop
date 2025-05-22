@@ -83,8 +83,16 @@ class DrinkController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $drink = Drink::findOrFail($request->id);
+
+        if ($drink->image && file_exists(public_path('uploads/' . $drink->image))) {
+            unlink(public_path('uploads/' . $drink->image));
+        }
+
+        $drink->delete();
+
+        return redirect()->back()->with('success', 'Drink deleted successfully.');
     }
 }

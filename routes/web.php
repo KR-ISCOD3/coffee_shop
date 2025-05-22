@@ -31,6 +31,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/admin/drinks',[DrinkController::class,'index'])->name("drinks.admin");
 
     Route::post('/admin/drinks',[DrinkController::class,'store'])->name('drinksCreate.admin');
+    Route::delete('/admin/drinks/{id}', [DrinkController::class, 'destroy'])->name('drinksDelete.admin');
+    
 });
 
 Route::middleware(['auth','role:cashier'])->group(function(){
