@@ -61,9 +61,16 @@
                                     <span class="px-3 bg-secondary-subtle rounded-2">{{ $drink->created_at->format('d/m/Y') }}</span>
                                 </td>
                                 <td>
-                                    <button class="btn bg-pink-700 text-light"
+                                    <button class="btn bg-pink-700 text-light editBtn"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#modaledit{{ $drink->id }}">
+                                            data-bs-target="#modaledit"
+                                            data-id="{{ $drink->id }}"
+                                            data-name="{{ $drink->name }}"
+                                            data-category="{{ $drink->category_id }}"
+                                            data-small-price="{{ $drink->small_price }}"
+                                            data-medium-price="{{ $drink->medium_price }}"
+                                            data-image="{{ asset('uploads/' . $drink->image)}}"
+                                            >
 
                                         <i class="bi bi-pencil-square"></i></button>
 
@@ -148,36 +155,36 @@
                         <div class="row">
                             <div class="col-5">
                                 <div style="height: 230px;" class="w-100 bg-pink-700">
-                                    <img id="previewImg" src="" alt="" class="w-100 h-100 object-fit-cover">
+                                    <img id="editPreviewImg" src="" alt="" class="w-100 h-100 object-fit-cover">
                                 </div>
-                                <input required type="file" id="imageInput" class="d-none">
-                                <button class="btn bg-pink-700 text-light w-100 mt-2 rounded-0" id="uploadBtn" type="button">Upload</button>
+                                <input required type="file" id="editImageInput" class="d-none">
+                                <button class="btn bg-pink-700 text-light w-100 mt-2 rounded-0" id="editUploadBtn" type="button">Upload</button>
                             </div>
                             <div class="col-7 p-0 pe-2">
                                <div class="mb-1">
                                 <label for="">Drink Name*</label>
-                                <input required type="text" name="drink" id="drink" placeholder="Enter Drink Name" class="form-control shadow-none border rounded-0">
+                                <input required type="text" name="drink" id="editDrink" placeholder="Enter Drink Name" class="form-control shadow-none border rounded-0">
                                </div>
                                <div class="mb-1">
                                 <label for="">Category*</label>
-                                <select name="category" id="category" class="form-select shadow-none border rounded-0">
-                                    <option value="Coffee">Coffee</option>
-                                    <option value="MilkTea">Milk-Tea</option>
+                                <select name="category" id="editCategory" class="form-select shadow-none border rounded-0">
+                                    <option value="1">Coffee</option>
+                                    <option value="2">Milk-Tea</option>
                                 </select>
                                </div>
                                <div class="mb-1">
                                 <label for="">Small Price*</label>
-                                <input required type="number" name="price_small" id="price_small" placeholder="Enter Small Price" class="form-control shadow-none border rounded-0">
+                                <input required type="number" name="price_small" id="editSmallPrice" placeholder="Enter Small Price" class="form-control shadow-none border rounded-0">
                                </div>
                                <div class="mb-1">
                                 <label for="">Meduim Price*</label>
-                                <input required type="number" name="meduim_small" id="meduim_small" placeholder="Enter Meduim Price" class="form-control shadow-none border rounded-0">
+                                <input required type="number" name="meduim_small" id="editMediumPrice" placeholder="Enter Meduim Price" class="form-control shadow-none border rounded-0">
                                </div>
                             </div>
                         </div>
                         <div class="modal-footer mt-2">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-warning">Update</button>
+                            <button type="submit" class="btn btn-warning">Update</button>
                         </div>
                     </form>
                 </div>
@@ -220,5 +227,36 @@
             // Update the form action to include the drink ID
             deleteForm.action = `/admin/drinks/${drinkId}`;
         });
+
+        $(document).ready(function(){
+            $('.editBtn').on('click',function(){
+                const id = $(this).data('id');
+                const name = $(this).data('name');
+                const category = $(this).data('category');
+                const small = $(this).data('small-price');
+                const medium = $(this).data('medium-price');
+                const image = $(this).data('image');
+
+                // Fill modal fields
+                $('#editDrink').val(name);
+                $('#editCategory').val(category);
+                $('#editSmallPrice').val(small);
+                $('#editMediumPrice').val(medium);
+                $('#editPreviewImg').attr('src', image);
+            })
+
+            // Trigger file input when Upload button is clicked
+            $('#editUploadBtn').on('click', function () {
+                $('#editImageInput').click();
+            });
+
+            // Preview uploaded image
+            $('#editImageInput').on('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    $('#editPreviewImg').attr('src', URL.createObjectURL(file));
+                }
+            });
+        })
     </script>
 @endsection
