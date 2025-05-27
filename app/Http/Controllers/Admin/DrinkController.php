@@ -77,7 +77,42 @@ class DrinkController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $drink = Drink::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'image' => $request->hasFile('image') ? 'image' : 'nullable',
+            'category_id' => 'required|integer',
+            'small_price' => 'required|numeric',
+            'medium_price' => 'required|numeric',
+        ]);
+
+        if ($request->hasFile('image')) {
+            // delete old image
+            if ($drink->image && file_exists(public_path('uploads/' . $drink->image))) {
+                unlink(public_path('uploads/' . $drink->image));
+            }
+
+            // store new image
+            $filename = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('uploads'), $filename);
+            $validated['image'] = $filename;
+        } else {
+            $validated['image'] = $drink->image; // keep old image if no new upload
+        }
+
+        // $drink->update($validated);
+
+
+        $drink->update([
+            'name' => $validated['name'],
+            'image' => $validated['image'],
+            'category_id' => $validated['category_id'],
+            'small_price' => $validated['small_price'],
+            'medium_price' => $validated['medium_price'],
+        ]);
+
+        return redirect()->back()->with('success', 'Drink updated successfully');
     }
 
     /**

@@ -151,34 +151,36 @@
                     <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form id="editForm" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-5">
                                 <div style="height: 230px;" class="w-100 bg-pink-700">
                                     <img id="editPreviewImg" src="" alt="" class="w-100 h-100 object-fit-cover">
                                 </div>
-                                <input required type="file" id="editImageInput" class="d-none">
+                                <input type="file" name="image"  id="editImageInput" class="d-none">
                                 <button class="btn bg-pink-700 text-light w-100 mt-2 rounded-0" id="editUploadBtn" type="button">Upload</button>
                             </div>
                             <div class="col-7 p-0 pe-2">
                                <div class="mb-1">
                                 <label for="">Drink Name*</label>
-                                <input required type="text" name="drink" id="editDrink" placeholder="Enter Drink Name" class="form-control shadow-none border rounded-0">
+                                <input required type="text" name="name" id="editDrink" placeholder="Enter Drink Name" class="form-control shadow-none border rounded-0">
                                </div>
                                <div class="mb-1">
                                 <label for="">Category*</label>
-                                <select name="category" id="editCategory" class="form-select shadow-none border rounded-0">
+                                <select name="category_id" id="editCategory" class="form-select shadow-none border rounded-0">
                                     <option value="1">Coffee</option>
                                     <option value="2">Milk-Tea</option>
                                 </select>
                                </div>
                                <div class="mb-1">
                                 <label for="">Small Price*</label>
-                                <input required type="number" name="price_small" id="editSmallPrice" placeholder="Enter Small Price" class="form-control shadow-none border rounded-0">
+                                <input required type="text" name="small_price" id="editSmallPrice" placeholder="Enter Small Price" class="form-control shadow-none border rounded-0">
                                </div>
                                <div class="mb-1">
                                 <label for="">Meduim Price*</label>
-                                <input required type="number" name="meduim_small" id="editMediumPrice" placeholder="Enter Meduim Price" class="form-control shadow-none border rounded-0">
+                                <input required type="text" name="medium_price" id="editMediumPrice" placeholder="Enter Meduim Price" class="form-control shadow-none border rounded-0">
                                </div>
                             </div>
                         </div>
@@ -228,35 +230,41 @@
             deleteForm.action = `/admin/drinks/${drinkId}`;
         });
 
-        $(document).ready(function(){
-            $('.editBtn').on('click',function(){
-                const id = $(this).data('id');
-                const name = $(this).data('name');
-                const category = $(this).data('category');
-                const small = $(this).data('small-price');
-                const medium = $(this).data('medium-price');
-                const image = $(this).data('image');
+        $(document).ready(function () {
+        // Open file dialog when "Upload" button clicked
+        $('#editUploadBtn').on('click', function () {
+            $('#editImageInput').click();
+        });
 
-                // Fill modal fields
-                $('#editDrink').val(name);
-                $('#editCategory').val(category);
-                $('#editSmallPrice').val(small);
-                $('#editMediumPrice').val(medium);
-                $('#editPreviewImg').attr('src', image);
-            })
+        // Preview image after file is selected
+        $('#editImageInput').on('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#editPreviewImg').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
-            // Trigger file input when Upload button is clicked
-            $('#editUploadBtn').on('click', function () {
-                $('#editImageInput').click();
-            });
+        // Fill modal fields when Edit button is clicked
+        $('.editBtn').on('click', function () {
+            const id = $(this).data('id');
+            const name = $(this).data('name');
+            const category = $(this).data('category');
+            const small = $(this).data('small-price');
+            const medium = $(this).data('medium-price');
+            const image = $(this).data('image');
 
-            // Preview uploaded image
-            $('#editImageInput').on('change', function () {
-                const file = this.files[0];
-                if (file) {
-                    $('#editPreviewImg').attr('src', URL.createObjectURL(file));
-                }
-            });
-        })
+            $('#editDrink').val(name);
+            $('#editCategory').val(category);
+            $('#editSmallPrice').val(small);
+            $('#editMediumPrice').val(medium);
+            $('#editPreviewImg').attr('src', image);
+
+            $('#editForm').attr('action', `/admin/drinks/${id}`);
+        });
+    });
     </script>
 @endsection
