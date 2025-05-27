@@ -24,43 +24,27 @@
 
                         <div class="row m-0 my-4">
 
-                            <div class="col-6 my-2">
-                                <div class="card rounded-0">
-                                    <div class="card-image bg-secondary overflow-hidden" style="height: 250px;">
-                                        <img src="" alt="" class="w-100 h-100 object-fit-cover">
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="navbar align-items-center">
-                                            <div>
-                                                <h3 class="m-0">Ice Latte</h3>
-                                                <p class="m-0 fs-5 text-pink-700">$1.50</p>
-                                            </div>
-                                            <div>
-                                                <button class="btn bg-pink-700 text-light rounded-0">+ Add To Cart</button>
+                            @foreach ($drinks as $drink)
+                                <div class="col-6 my-2">
+                                    <div class="card rounded-0">
+                                        <div class="card-image bg-secondary overflow-hidden" style="height: 250px;">
+                                            <img src="{{ asset('uploads/' . $drink->image) }}" alt="{{ $drink->name }}" class="w-100 h-100 object-fit-cover">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="navbar align-items-center">
+                                                <div>
+                                                    <h3 class="m-0">{{ $drink->name }}</h3>
+                                                    {{-- <p class="m-0 fs-5 text-pink-700">${{ number_format($drink->price, 2) }}</p> --}}
+                                                </div>
+                                                <div>
+                                                    <button class="btn bg-pink-700 text-light rounded-0">+ Add To Cart</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
 
-                            <div class="col-6 my-2">
-                                <div class="card rounded-0">
-                                    <div class="card-image bg-secondary overflow-hidden" style="height: 250px;">
-                                        <img src="" alt="" class="w-100 h-100 object-fit-cover">
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="navbar align-items-center">
-                                            <div>
-                                                <h3 class="m-0">Ice Latte</h3>
-                                                <p class="m-0 fs-5 text-pink-700">$1.50</p>
-                                            </div>
-                                            <div>
-                                                <button class="btn bg-pink-700 text-light rounded-0">+ Add To Cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
