@@ -31,14 +31,34 @@
                                             <img src="{{ asset('uploads/' . $drink->image) }}" alt="{{ $drink->name }}" class="w-100 h-100 object-fit-cover">
                                         </div>
                                         <div class="card-body">
-                                            <div class="navbar align-items-center">
+                                            <div>
                                                 <div>
                                                     <h3 class="m-0">{{ $drink->name }}</h3>
                                                     {{-- <p class="m-0 fs-5 text-pink-700">${{ number_format($drink->price, 2) }}</p> --}}
                                                 </div>
-                                                <div>
-                                                    <button class="btn bg-pink-700 text-light rounded-0">+ Add To Cart</button>
+                                                <div class="d-flex mt-2">
+                                                    <button
+                                                     class="btn bg-primary text-light rounded-0 add-card me-2"
+                                                     data-id="{{ $drink->id }}"
+                                                     data-name="{{ $drink->name }}"
+                                                     data-categoy="{{ $drink->category_id }}"
+                                                     data-small_price="{{ $drink->small_price }}"
+                                                     data-selected_size="small"
+                                                     >
+                                                        + Small Price
+                                                    </button>
+                                                    <button
+                                                     class="btn bg-success text-light rounded-0 add-card"
+                                                     data-id="{{ $drink->id }}"
+                                                     data-name="{{ $drink->name }}"
+                                                     data-categoy="{{ $drink->category_id }}"
+                                                     {{-- data-small_price="{{ $drink->small_price }}" --}}
+                                                     data-medium_price="{{ $drink->medium_price }}"
+                                                     data-selected_size="medium">
+                                                        + Medium Price
+                                                    </button>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -63,8 +83,8 @@
                                 <td class="text-secondary">Total</td>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="align-middle">
+                        <tbody id="cart-body">
+                            {{-- <tr class="align-middle">
                                 <td>Ice Latte</td>
                                 <td class="col-3">
                                     <select name="" id="" class="form-select shadow-none border rounded-0">
@@ -91,7 +111,7 @@
                                     <input type="number" name="" id="" class="form-control shadow-none border rounded-0" value="2">
                                 </td>
                                 <td>$3.00</td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-between">
@@ -100,7 +120,8 @@
 
                         </div>
                         <div>
-                            <button class="btn btn-dark">Proccess Order</button>
+                            <button class="btn btn-dark"
+                            >Proccess Order</button>
                         </div>
                     </div>
                 </div>
@@ -108,5 +129,96 @@
             </div>
         </div>
     </div>
+
+    <script>
+        let cart = [];
+
+        $(document).ready(function () {
+            // Add to Cart
+            $('.add-card').on('click', function () {
+                const id = $(this).data('id');
+                const name = $(this).data('name');
+                const selected_size = $(this).data('selected_size');
+                const small_price = parseFloat($(this).data('small_price') || 0);
+                const medium_price = parseFloat($(this).data('medium_price') || 0);
+
+                const existingItem = cart.find(item => item.id === id && item.selected_size === selected_size);
+
+                const price = selected_size === 'medium' ? medium_price : small_price;
+
+                if (existingItem) {
+                    existingItem.qty += 1;
+                    existingItem.total = (existingItem.qty * price).toFixed(2);
+                } else {
+                    cart.push({
+                        id: id,
+                        name: name,
+                        small_price: small_price,
+                        medium_price: medium_price,
+                        selected_size: selected_size,
+                        qty: 1,
+                        total: price.toFixed(2)
+                    });
+                }
+
+                renderCart();
+            });
+
+            // Render cart table
+            function renderCart() {
+                let cartTable = '';
+
+                cart.forEach((item, index) => {
+                    const price = item.selected_size === 'medium' ? item.medium_price : item.small_price;
+                    const total = (item.qty * price).toFixed(2);
+                    item.total = total;
+
+                    cartTable += `
+                        <tr class="align-middle">
+                            <td>${item.name}</td>
+                            <td class="col-4">
+                                <input
+                                    type="text"
+                                    class="form-control shadow-none border rounded-0 " disabled
+                                    data-index="${index}" value="${item.selected_size === 'small' ? 'small' : 'medium'}">
+                            </td>
+                            <td>$${price.toFixed(2)}</td>
+                            <td class="col-2">
+                                <input type="number" min="1" class="form-control shadow-none border rounded-0 qty-input col"
+                                data-index="${index}" value="${item.qty}">
+                            </td>
+                            <td>$${total}</td>
+                        </tr>
+                    `;
+                });
+
+                $('#cart-body').html(cartTable);
+                updateTotalDisplay();
+            }
+
+            // Size change
+            $(document).on('change', '.size-select', function () {
+                const index = $(this).data('index');
+                const newSize = $(this).val();
+                cart[index].selected_size = newSize;
+                renderCart();
+            });
+
+            // Quantity change
+            $(document).on('change', '.qty-input', function () {
+                const index = $(this).data('index');
+                const newQty = parseInt($(this).val()) || 1;
+                cart[index].qty = newQty;
+                renderCart();
+            });
+
+            // Update total payment display
+            function updateTotalDisplay() {
+                const total = cart.reduce((sum, item) => sum + parseFloat(item.total), 0);
+                $('.m-0:contains("Total-Payment")').text(`Total-Payment : $${total.toFixed(2)}`);
+            }
+        });
+    </script>
+
 
 @endsection
